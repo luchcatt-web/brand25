@@ -64,4 +64,41 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Карусель мобильного фона с телефоном
+    const mobilePhoneSlides = document.querySelectorAll('.mobile-phone-slide');
+    let currentMobileSlide = 0;
+    let mobileCarouselInterval;
+    
+    function showMobileSlide(index) {
+        mobilePhoneSlides.forEach(slide => slide.classList.remove('active'));
+        if (mobilePhoneSlides[index]) {
+            mobilePhoneSlides[index].classList.add('active');
+        }
+        currentMobileSlide = index;
+    }
+    
+    function nextMobileSlide() {
+        const next = (currentMobileSlide + 1) % mobilePhoneSlides.length;
+        showMobileSlide(next);
+    }
+    
+    function startMobileCarousel() {
+        if (mobilePhoneSlides.length > 0) {
+            mobileCarouselInterval = setInterval(nextMobileSlide, 5000);
+        }
+    }
+    
+    // Запуск карусели только на мобильных
+    if (window.innerWidth <= 768) {
+        startMobileCarousel();
+    }
+    
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 768 && !mobileCarouselInterval) {
+            startMobileCarousel();
+        } else if (window.innerWidth > 768 && mobileCarouselInterval) {
+            clearInterval(mobileCarouselInterval);
+            mobileCarouselInterval = null;
+        }
+    });
 });

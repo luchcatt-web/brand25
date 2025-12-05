@@ -1,0 +1,73 @@
+/* ============================================
+   BRAND25 — Тёмная тема (альтернативный вариант)
+   ============================================ */
+
+:root {
+    /* Цветовая палитра — тёмная */
+    --color-primary: #FFFFFF;
+    --color-secondary: #999999;
+    --color-accent: #FFFFFF;
+    --color-bg: #0A0A0A;
+    --color-bg-light: #1A1A1A;
+    --color-border: #333333;
+    --color-text: #FFFFFF;
+    --color-text-light: #999999;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+}
+
+.btn-primary:hover {
+    background-color: #E0E0E0;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-bg-light);
+}
+
+.step,
+.audience-card,
+.included-item,
+.example-card,
+.testimonial-card {
+    background: var(--color-bg-light);
+    border-color: var(--color-border);
+}
+
+.order-form {
+    background: var(--color-bg-light);
+    border-color: var(--color-border);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background: var(--color-bg);
+    border-color: var(--color-border);
+    color: var(--color-text);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--color-primary);
+}
+
+.example-image-placeholder,
+.author-avatar-placeholder {
+    background: var(--color-border);
+    color: var(--color-text-light);
+}

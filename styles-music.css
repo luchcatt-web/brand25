@@ -1,0 +1,96 @@
+/* ============================================
+   BRAND25 — Музыкальный блог-стиль (альтернативный вариант)
+   ============================================ */
+
+:root {
+    /* Цветовая палитра — музыкальный блог */
+    --color-primary: #FF6B6B;
+    --color-secondary: #8E8E8E;
+    --color-accent: #FF6B6B;
+    --color-bg: #FAFAFA;
+    --color-bg-light: #FFFFFF;
+    --color-border: #E8E8E8;
+    --color-text: #2C2C2C;
+    --color-text-light: #8E8E8E;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+.hero-title .accent {
+    color: var(--color-accent);
+}
+
+.btn-primary {
+    background-color: var(--color-accent);
+    color: #FFFFFF;
+}
+
+.btn-primary:hover {
+    background-color: #FF5252;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-text);
+    border: 2px solid var(--color-accent);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-accent);
+    color: #FFFFFF;
+}
+
+.step-number {
+    color: var(--color-accent);
+}
+
+.check-icon {
+    color: var(--color-accent);
+}
+
+.step,
+.audience-card,
+.included-item,
+.example-card,
+.testimonial-card {
+    border: 2px solid var(--color-border);
+    transition: all 0.3s ease;
+}
+
+.step:hover,
+.audience-card:hover,
+.example-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.order-form {
+    border: 2px solid var(--color-border);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+/* Более свободная типографика */
+.hero-title {
+    letter-spacing: -0.03em;
+}
+
+.section-title {
+    letter-spacing: -0.02em;
+}
+
+/* Больше воздуха */
+section {
+    padding: calc(var(--spacing-xl) * 1.2) 0;
+}

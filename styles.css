@@ -104,6 +104,8 @@ button, input, select, textarea {
 .hero-content-inner {
     max-width: 600px;
     width: 100%;
+    position: relative;
+    z-index: 3;
 }
 
 /* ============================================
@@ -316,88 +318,65 @@ button, input, select, textarea {
     font-size: 19px;
 }
 
-/* Кнопка в стиле логотипа */
-.btn-logo-style {
+/* Кнопка в стиле highlight (золотая) */
+.btn-highlight-style {
     font-size: clamp(18px, 2.5vw, 22px);
     font-weight: 700;
     letter-spacing: -0.01em;
-    color: #FFFFFF;
+    color: #FFD700;
     padding: 18px 48px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 215, 0, 0.2);
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 215, 0, 0.4);
     border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 16px rgba(255, 215, 0, 0.3), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 0 20px rgba(255, 215, 0, 0.2);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
     display: inline-block;
     text-decoration: none;
     text-align: center;
+    animation: pulse-glow-button 2s ease-in-out infinite;
 }
 
-.btn-logo-style::before {
+@keyframes pulse-glow-button {
+    0%, 100% {
+        box-shadow: 0 4px 16px rgba(255, 215, 0, 0.3), 
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                    0 0 20px rgba(255, 215, 0, 0.2);
+    }
+    50% {
+        box-shadow: 0 6px 24px rgba(255, 215, 0, 0.4), 
+                    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                    0 0 30px rgba(255, 215, 0, 0.3);
+    }
+}
+
+.btn-highlight-style::before {
     content: '';
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
     transition: left 0.6s ease;
 }
 
-.btn-logo-style:hover::before {
+.btn-highlight-style:hover::before {
     left: 100%;
 }
 
-.btn-logo-style::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
-    border-radius: 0 0 20px 20px;
-}
-
-.btn-logo-style:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 
-                inset 0 1px 0 rgba(255, 255, 255, 0.5),
-                inset 0 -1px 0 rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
-}
-
-.btn-logo-style:hover::after {
-    opacity: 1;
-}
-
-/* Анимация shimmer для кнопки */
-.btn-logo-style {
-    animation: button-shimmer 4s ease-in-out infinite;
-}
-
-@keyframes button-shimmer {
-    0%, 100% {
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
-                    inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
-    }
-    50% {
-        box-shadow: 0 10px 36px rgba(0, 0, 0, 0.35), 
-                    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-                    inset 0 -1px 0 rgba(255, 255, 255, 0.15),
-                    0 0 20px rgba(255, 215, 0, 0.1);
-    }
+.btn-highlight-style:hover {
+    background: rgba(255, 215, 0, 0.25);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 32px rgba(255, 215, 0, 0.4), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                0 0 40px rgba(255, 215, 0, 0.4);
+    border-color: rgba(255, 215, 0, 0.5);
 }
 
 /* ============================================
@@ -467,10 +446,6 @@ button, input, select, textarea {
     transform: translateY(-2px) scale(1.02);
 }
 
-.feature-item.feature-payment .feature-icon {
-    color: #FFD700;
-    filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.5));
-}
 
 .feature-icon {
     width: 18px;
@@ -1222,26 +1197,66 @@ button, input, select, textarea {
     }
     
     .hero-split {
-        min-height: auto;
+        min-height: 100vh;
+        flex-direction: column;
+        position: relative;
     }
     
     .hero-content-side {
+        flex: 1;
         min-height: auto;
         padding: var(--spacing-lg) var(--spacing-md);
+        padding-bottom: 60vh;
+        position: relative;
+        z-index: 2;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .logo-container {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .logo {
+        display: inline-block;
     }
     
     .hero-examples-side {
-        min-height: 50vh;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 55vh;
+        min-height: 400px;
+        z-index: 1;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: var(--spacing-md);
+    }
+    
+    .phone-demo-container {
+        height: 100%;
+        align-items: flex-end;
     }
     
     .phone-mockup {
-        width: 240px;
-        height: 480px;
-        padding: 12px;
+        width: 200px;
+        height: 400px;
+        padding: 10px;
+        transform: scale(0.85);
     }
     
     .background-site {
-        filter: blur(15px) brightness(0.6);
+        filter: blur(12px) brightness(0.5);
+    }
+    
+    .blur-overlay {
+        background: rgba(0, 0, 0, 0.6);
     }
     
     .hero-cta {
